@@ -9,8 +9,8 @@ class Dojo:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
-@classmethod
-def get_all(cls, data):
+    @classmethod
+    def get_all_dojos(cls):
         query = "SELECT * FROM dojos;"
         results = connectToMySQL(cls.DB).query_db(query)
         dojos = []
@@ -18,14 +18,16 @@ def get_all(cls, data):
             dojos.append(cls(d))
         return dojos
 
-@classmethod
-def save(cls, data):
+    @classmethod
+    def save(cls, data):
         query = """
         
-        INSERT INTO dojos (first_name, last_name, email)
-        VALUES (%(first_name)s,%(last_name)s,%(email)s);
+        INSERT INTO dojos (name)
+        VALUES (%(name)s)
         
         """
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL(cls.DB).query_db(query, data)
         return results
+    
+    
