@@ -14,7 +14,7 @@
     <form action='/ninjas/added' method='POST'>
         <h1 class="display-4 text-center">New Ninja </h1>
         <div class="form-group">
-            <select name="dojos" id="dojos">
+            <select name="dojo_id" id="dojos">
                 {%for d in dojos%}
 
                 <option name="dojo_id" value="{{d.id}}">{{d.name}}</option>

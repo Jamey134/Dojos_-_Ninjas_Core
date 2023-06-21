@@ -10,5 +10,23 @@
 </head>
 <body>
     
+    <h1>{{dojo_id.name}} Ninjas</h1>
+    <table class="bg-light text-black d-flex">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+        </tr>
+        {% for i in ninjaList %}
+        <tr>
+            <th>{{i.first_name}}</th>
+            <th>{{i.last_name}}</th>
+            <th>{{i.age}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+    <a href="/">Home</a>
 </body>
 </html>

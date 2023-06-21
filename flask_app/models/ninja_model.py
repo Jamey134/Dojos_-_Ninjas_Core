@@ -27,19 +27,19 @@ class Ninja:
 
         @classmethod  # <========CREATE FUNCTION
         def create(cls, data):
-                ninjaCount= len(Ninja.get_all()) + 1
-                data = data.to_dict()
-                data['id'] = ninjaCount
-                print(f"\n newID: {ninjaCount} \n")
+                
+                
                 query = """
 
-                INSERT INTO ninjas (id, first_name, last_name, age, dojos_id)
-                VALUES (`%(id)s`,`%(first_name)s`,`%(last_name)s`,`%(age)s`,`%(dojos)s`;
+                INSERT INTO ninjas (first_name, last_name, age, dojo_id)
+                VALUES (%(first_name)s,%(last_name)s,%(age)s,%(dojo_id)s);
 
                 """
                 # make sure to call the connectToMySQL function with the schema you are targeting.
                 results = connectToMySQL(cls.DB).query_db(query, data)
                 return results
+        
+
 
 
         @classmethod  # <----- EDIT VALUES
@@ -48,7 +48,7 @@ class Ninja:
                 SELECT * FROM ninjas
                 WHERE id = %(id)s ;
                         """
-                results = connectToMySQL("dojos_and_ninjas_schema").query_db(query, data)
+                results = connectToMySQL(cls.DB).query_db(query, data)
 
                 return cls(results[0])
 
@@ -59,7 +59,7 @@ class Ninja:
                 UPDATE ninjas SET first_name=%(first_name)s,last_name=%(last_name)s, age=%(age)s
                 WHERE id = %(id)s
                         """
-                results = connectToMySQL("dojos_and_ninjas_schema").query_db(query, data)
+                results = connectToMySQL(cls.DB).query_db(query, data)
                 return results
 
 

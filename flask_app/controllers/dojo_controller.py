@@ -22,3 +22,7 @@ def addDojo():
     print("\nThis was submitted in the form--------->", request.form, "\n")
     return redirect('/dojos')
 
+@app.route('/dojos/<int:id>')
+def showDojo(id):
+
+    return render_template('dojo_info.html', dojo_id = Dojo.get_one({'id' : id}), ninjaList=Dojo.get_dojo_with_ninjas({'id' : id}))

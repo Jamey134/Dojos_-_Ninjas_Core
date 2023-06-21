@@ -17,6 +17,28 @@ class Dojo:
         for d in results:
             dojos.append(cls(d))
         return dojos
+    
+    @classmethod
+    def get_dojo_with_ninjas( cls , data ):
+        query = """SELECT *
+                FROM dojos
+                JOIN ninjas
+                ON dojos.id = ninjas.dojo_id
+                WHERE ninjas.dojo_id = %(id)s;
+        """
+        results = connectToMySQL(cls.DB).query_db( query , data )
+        return results
+    
+    @classmethod  # <----- EDIT VALUES
+    def get_one(cls, data):
+            query = """
+            SELECT * FROM dojos
+            WHERE dojos.id = %(id)s ;
+                        """
+            results = connectToMySQL(cls.DB).query_db(query, data)
+
+            one_dojo = cls(results[0])
+            return one_dojo
 
     @classmethod
     def save(cls, data):
@@ -29,5 +51,4 @@ class Dojo:
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL(cls.DB).query_db(query, data)
         return results
-    
     

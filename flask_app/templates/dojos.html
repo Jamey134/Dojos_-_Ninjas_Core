@@ -30,7 +30,7 @@
         <h2 class='display-4'>All Dojos</h2>
         {% for d in dojos%}
         <br>
-        <a href="#">{{d.name}}</a>
+        <a href="/dojos/{{d.id}}">{{d.name}}</a>
         {%endfor%}
     </div>
     <div>
